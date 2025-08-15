@@ -23,23 +23,18 @@ body {
   color: var(--text);
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  justify-content: space-between;
   padding: 20px;
   box-sizing: border-box;
 }
 .container {
   text-align: left;
   width: 100%;
-  max-width: 500px;
-  flex: 1;
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
+  max-width: 600px;
 }
 h1 {
-  font-size: clamp(2.5rem, 8vw, 5rem);
-  line-height: 1.2;
+  font-size: clamp(3.5rem, 10vw, 6rem);
+  line-height: 1.15;
   margin: 0;
 }
 .underline {
@@ -49,20 +44,19 @@ h1 {
 .underline svg {
   position: absolute;
   left: 0;
-  bottom: -8px;
+  bottom: -4px;
   width: 100%;
   height: auto;
   color: var(--accent);
 }
 .underline svg path {
   stroke: currentColor;
+  stroke-width: 18;
 }
 .subtitle {
-  font-size: clamp(1rem, 3vw, 1.5rem);
+  font-size: clamp(1.1rem, 3vw, 1.5rem);
   color: rgba(255, 255, 255, 0.5);
-  text-align: center;
-  margin-top: auto;
-  padding-bottom: 10px;
+  text-align: left;
 }
 </style>
 </head>
@@ -74,25 +68,24 @@ h1 {
     <span class="underline">
       better
       <svg width="324" height="25" viewBox="0 0 324 25" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M0.933809 14.1066C79.9945 6.29259 245.72 4.22617 322.087 17.1281" stroke-width="15"/>
+        <path d="M0.933809 14.1066C79.9945 6.29259 245.72 4.22617 322.087 17.1281"/>
       </svg>
     </span>
   </h1>
 </div>
 <div class="subtitle">All you can do is wait.</div>
 <script>
-window.Telegram?.WebApp?.onEvent('themeChanged', function() {
-  const t = window.Telegram.WebApp.themeParams;
-  document.documentElement.style.setProperty('--bg', t.bg_color);
-  document.documentElement.style.setProperty('--text', t.text_color);
-  document.documentElement.style.setProperty('--accent', t.link_color);
-});
-if (window.Telegram?.WebApp?.themeParams) {
-  const t = window.Telegram.WebApp.themeParams;
-  document.documentElement.style.setProperty('--bg', t.bg_color);
-  document.documentElement.style.setProperty('--text', t.text_color);
-  document.documentElement.style.setProperty('--accent', t.link_color);
+function applyTheme(t) {
+  document.documentElement.style.setProperty('--bg', t.bg_color || '#111827');
+  document.documentElement.style.setProperty('--text', t.text_color || '#ffffff');
+  document.documentElement.style.setProperty('--accent', t.link_color || '#1d9bf0');
 }
+if (window.Telegram?.WebApp?.themeParams) {
+  applyTheme(window.Telegram.WebApp.themeParams);
+}
+window.Telegram?.WebApp?.onEvent('themeChanged', function() {
+  applyTheme(window.Telegram.WebApp.themeParams);
+});
 </script>
 </body>
 </html>
