@@ -1,14 +1,12 @@
 :root {
-    --bg-color: #17212b;
-    --card-color: #1d2733;
-    --text-color: #f5f5f5;
-    --hint-color: #8a99a8;
-    --button-bg: #529ef3;
-    --button-text: #ffffff;
+    --bg-color: var(--tg-theme-bg-color, #17212b);
+    --card-color: var(--tg-theme-secondary-bg-color, #1d2733);
+    --text-color: var(--tg-theme-text-color, #f5f5f5);
+    --hint-color: var(--tg-theme-hint-color, #8a99a8);
+    --button-bg: var(--tg-theme-button-color, #529ef3);
+    --button-text: var(--tg-theme-button-text-color, #ffffff);
     --accent-green: #28a745;
     --accent-yellow: #ffc107;
-    --icon-inactive: #8a99a8;
-    --icon-active: #529ef3;
 }
 
 * {
@@ -34,7 +32,7 @@ body {
 }
 
 .font-numeric {
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Nunito', sans-serif;
     font-weight: 900;
 }
 
@@ -55,32 +53,59 @@ body {
     padding: 20px;
 }
 
-.username {
+.username-input, .balance-input {
+    background: none;
+    border: none;
+    color: var(--text-color);
+    text-align: center;
+    outline: none;
+    width: 100%;
+}
+
+.username-input {
     font-size: 1.5rem;
     color: var(--hint-color);
+    font-family: 'SF Pro Display', sans-serif;
+    font-weight: 700;
+}
+
+.balance-input {
+    font-size: 5.5rem;
+    line-height: 1;
+    max-width: 80%;
+}
+
+.balance-input::-webkit-outer-spin-button,
+.balance-input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+.balance-input {
+    -moz-appearance: textfield;
 }
 
 .balance {
-    font-size: 5.5rem;
     line-height: 1;
     margin: 10px 0 25px 0;
     display: flex;
     align-items: center;
+    justify-content: center;
     gap: 12px;
 }
 
 .star-svg {
     display: block;
+    flex-shrink: 0;
 }
 
 .star-svg.large {
-    width: 48px;
-    height: 48px;
+    width: 52px;
+    height: 52px;
 }
 
 .star-svg.small {
-    width: 24px;
-    height: 24px;
+    width: 28px;
+    height: 28px;
 }
 
 .purchase-btn {
@@ -109,7 +134,7 @@ body {
     display: flex;
     justify-content: space-around;
     align-items: center;
-    border-top: 1px solid rgba(0, 0, 0, 0.2);
+    border-top: 1px solid rgba(128, 128, 128, 0.2);
     padding: 0 20px;
 }
 
@@ -117,19 +142,21 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    filter: grayscale(1) brightness(1.5);
     opacity: 0.6;
-    transition: opacity 0.2s ease, filter 0.2s ease;
 }
 
 .nav-link.active {
-    filter: none;
     opacity: 1;
 }
 
 .nav-link img {
     width: 32px;
     height: 32px;
+    filter: var(--tg-theme-hint-color); /* Correctly recolor icons */
+}
+
+.nav-link.active img {
+   filter: var(--tg-theme-button-color);
 }
 
 .history-list {
@@ -167,16 +194,16 @@ body {
     font-size: 0.8rem;
     margin-bottom: 8px;
     text-transform: uppercase;
-    color: white;
 }
 
 .status-badge.success {
     background-color: var(--accent-green);
+    color: white;
 }
 
 .status-badge.pending {
     background-color: var(--accent-yellow);
-    color: var(--bg-color);
+    color: #000;
 }
 
 .card-info {
