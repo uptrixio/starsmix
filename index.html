@@ -10,11 +10,11 @@
 <body>
 
     <div class="app-container">
-        <main class="main-content">
+        <main class="main-content" id="mainContent">
             <div class="home-container">
                 <div class="input-wrapper" id="usernameWrapper">
                     <span id="usernameText" class="username-display">@username</span>
-                    <input type="text" class="username-input" id="usernameInput" value="@username">
+                    <input type="text" class="username-input" id="usernameInput" value="@username" spellcheck="false">
                 </div>
 
                 <div class="input-wrapper" id="balanceWrapper">
@@ -26,7 +26,7 @@
                 </div>
 
                 <button class="purchase-btn" id="purchaseBtn">
-                    <span id="priceText" class="font-numeric">140</span>₽
+                    <span id="priceText" class="font-numeric">140₽</span>
                 </button>
             </div>
         </main>
