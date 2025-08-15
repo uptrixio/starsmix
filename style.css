@@ -23,22 +23,21 @@
     --accent-yellow: #ffc107;
 }
 
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
 html {
-    width: 100%;
     height: 100%;
 }
 
 body {
-    margin: 0;
-    padding: 0;
-    width: 100%;
-    min-height: 100%;
-    background-color: #000000;
+    height: 100%;
+    background-color: #000;
     font-family: 'SF Pro Display', sans-serif;
     font-weight: 700;
-    display: flex;
-    justify-content: center;
-    align-items: center;
     -webkit-tap-highlight-color: transparent;
 }
 
@@ -49,24 +48,23 @@ body {
 
 .app-container {
     width: 100%;
-    height: 100vh;
+    height: 100%;
+    margin: 0 auto;
     background-color: var(--tg-bg-color);
     color: var(--tg-text-color);
     display: flex;
     flex-direction: column;
-    box-sizing: border-box;
     overflow: hidden;
 }
 
 .main-content {
     flex-grow: 1;
-    overflow-y: auto;
-    width: 100%;
-    padding: 20px;
-    padding-bottom: 90px;
     display: flex;
     flex-direction: column;
     justify-content: center;
+    align-items: center;
+    overflow-y: auto;
+    padding: 20px;
 }
 
 .home-container {
@@ -75,15 +73,16 @@ body {
     justify-content: center;
     align-items: center;
     text-align: center;
+    width: 100%;
 }
 
 .input-wrapper {
     position: relative;
     cursor: pointer;
+    width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 100%;
 }
 
 .username-display, .balance-display {
@@ -105,28 +104,24 @@ body {
     gap: 15px;
 }
 
-.username-input, .balance-input {
+.input-field {
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
     background: transparent;
     border: none;
     color: transparent;
     text-align: center;
     outline: none;
     caret-color: var(--tg-button-bg);
-    padding: 0;
-    margin: 0;
 }
-.username-input:focus, .balance-input:focus {
+
+.input-field:focus {
     color: var(--tg-text-color);
 }
-.username-input:focus ~ .username-display,
-.balance-input:focus ~ .balance-display {
+.input-field:focus ~ .username-display,
+.input-field:focus ~ .balance-display {
     opacity: 0;
-    visibility: hidden;
 }
 
 .username-input {
@@ -143,14 +138,13 @@ body {
 .balance-input::-webkit-outer-spin-button,
 .balance-input::-webkit-inner-spin-button {
     -webkit-appearance: none;
-    margin: 0;
 }
 .balance-input {
     -moz-appearance: textfield;
 }
 
 #balanceWrapper {
-    margin: 10px 0 25px 0;
+    margin: 15px 0 30px 0;
 }
 
 .star-svg {
@@ -158,8 +152,8 @@ body {
     flex-shrink: 0;
 }
 .star-svg.large {
-    width: 60px;
-    height: 60px;
+    width: 75px;
+    height: 75px;
 }
 .star-svg.small {
     width: 28px;
@@ -182,24 +176,16 @@ body {
 }
 
 .footer-nav {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
+    flex-shrink: 0;
     height: 70px;
-    width: 100%;
     background-color: var(--tg-card-color);
     display: flex;
     justify-content: space-around;
     align-items: center;
     border-top: 1px solid rgba(128, 128, 128, 0.2);
-    padding: 0 20px;
 }
 
 .nav-link {
-    display: flex;
-    justify-content: center;
-    align-items: center;
     opacity: 0.6;
 }
 .nav-link.active {
@@ -262,7 +248,6 @@ body {
     margin-bottom: 8px;
     text-transform: uppercase;
 }
-
 .status-badge.success {
     background-color: var(--accent-green);
     color: white;

@@ -17,11 +17,10 @@ window.addEventListener('load', () => {
 });
 
 function setupHomePage() {
-    const mainContent = document.getElementById('mainContent');
+    const appContainer = document.getElementById('appContainer');
     const starsInput = document.getElementById('starsInput');
     const starsText = document.getElementById('starsText');
     const balanceWrapper = document.getElementById('balanceWrapper');
-    
     const usernameInput = document.getElementById('usernameInput');
     const usernameText = document.getElementById('usernameText');
     const usernameWrapper = document.getElementById('usernameWrapper');
@@ -35,7 +34,7 @@ function setupHomePage() {
     });
 
     usernameInput.addEventListener('input', () => {
-        let value = usernameInput.value;
+        let value = usernameInput.value.replace(/[^a-zA-Z0-9_@]/g, '');
         if (value.length > 0 && !value.startsWith('@')) {
             value = '@' + value;
         }
@@ -61,11 +60,9 @@ function setupHomePage() {
         }
     });
 
-    mainContent.addEventListener('click', (event) => {
-        const isClickInsideWrapper = usernameWrapper.contains(event.target) || balanceWrapper.contains(event.target);
-        if (!isClickInsideWrapper) {
-            starsInput.blur();
-            usernameInput.blur();
+    appContainer.addEventListener('click', (event) => {
+        if (!event.target.closest('.input-wrapper') && !event.target.closest('.purchase-btn')) {
+            document.activeElement.blur();
         }
     });
 }
@@ -73,7 +70,6 @@ function setupHomePage() {
 function updatePrice(quantityStr) {
     const priceText = document.getElementById('priceText');
     const quantity = parseInt(quantityStr, 10);
-
     if (!isNaN(quantity) && quantity > 0) {
         const price = Math.round(quantity * 1.4);
         priceText.textContent = `${price}₽`;

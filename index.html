@@ -2,19 +2,19 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, viewport-fit=cover">
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <title>Home</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <div class="app-container">
-        <main class="main-content" id="mainContent">
+    <div class="app-container" id="appContainer">
+        <main class="main-content">
             <div class="home-container">
                 <div class="input-wrapper" id="usernameWrapper">
                     <span id="usernameText" class="username-display">@username</span>
-                    <input type="text" class="username-input" id="usernameInput" value="@username" spellcheck="false">
+                    <input type="text" class="input-field username-input" id="usernameInput" value="@username" spellcheck="false">
                 </div>
 
                 <div class="input-wrapper" id="balanceWrapper">
@@ -22,7 +22,7 @@
                         <span id="starsText" class="font-numeric">100</span>
                         <img src="assets/icon/star.svg" alt="Star" class="star-svg large">
                     </div>
-                    <input type="number" class="balance-input font-numeric" id="starsInput" value="100" pattern="[0-9]*">
+                    <input type="number" class="input-field balance-input font-numeric" id="starsInput" value="100" pattern="[0-9]*">
                 </div>
 
                 <button class="purchase-btn" id="purchaseBtn">
