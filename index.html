@@ -14,25 +14,35 @@
   --tg-hint-color: var(--tg-theme-hint-color, rgba(255, 255, 255, 0.5));
 }
 
-html, body {
+html {
   margin: 0;
   padding: 0;
   width: 100%;
   height: 100%;
-  box-sizing: border-box;
-  background-color: var(--tg-bg-color);
-  color: var(--tg-text-color);
-  font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
 }
 
 body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  min-height: 100%;
+  background-color: #000000;
+  font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.app-container {
+  width: 100%;
+  height: 100vh;
+  background-color: var(--tg-bg-color);
+  color: var(--tg-text-color);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  min-height: 100vh;
-  font-weight: bold;
-  padding: 20px;
   box-sizing: border-box;
+  padding: 20px;
 }
 
 .center {
@@ -45,9 +55,11 @@ body {
 
 h1 {
   font-size: clamp(3.5rem, 10vw, 6rem);
-  line-height: 1.1;
+  line-height: 0.9;
   margin: 0;
   padding: 0;
+  font-weight: bold;
+  text-align: left;
 }
 
 .underline {
@@ -77,28 +89,47 @@ h1 {
   text-align: left;
   margin-top: 20px;
   width: 100%;
-  font-weight: normal;
+  font-weight: bold;
+}
+
+@media (max-width: 480px) {
+  .underline svg {
+    bottom: -6px;
+  }
+}
+
+@media (min-width: 600px) {
+  .app-container {
+    max-width: 420px;
+    height: 90vh;
+    max-height: 800px;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    position: relative;
+    overflow: hidden;
+  }
 }
 </style>
 </head>
 <body>
 
-  <div class="center">
-    <div class="container">
-      <h1>
-        We are<br>
-        becoming<br>
-        <span class="underline">
-          better
-          <svg viewBox="0 0 324 25" xmlns="http://www.w3.org/2000/svg">
-            <path d="M0.933809 14.1066C79.9945 6.29259 245.72 4.22617 322.087 17.1281"/>
-          </svg>
-        </span>
-      </h1>
+  <div class="app-container">
+    <div class="center">
+      <div class="container">
+        <h1>
+          We are<br>
+          becoming<br>
+          <span class="underline">
+            better
+            <svg viewBox="0 0 324 25" xmlns="http://www.w3.org/2000/svg">
+              <path d="M0.933809 14.1066C79.9945 6.29259 245.72 4.22617 322.087 17.1281"/>
+            </svg>
+          </span>
+        </h1>
+      </div>
     </div>
+    <div class="subtitle">All you can do is wait.</div>
   </div>
-
-  <div class="subtitle">All you can do is wait.</div>
 
   <script>
     try {
