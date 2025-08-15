@@ -5,35 +5,41 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <title>Home</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@900&display=swap" rel="stylesheet">
-    <link href="https://fonts.cdnfonts.com/css/sf-pro-display" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <main class="main-content">
-        <div class="home-container">
-            <input type="text" class="username-input" id="usernameInput" value="@username">
-            <div class="balance">
-                <input type="number" class="balance-input font-numeric" id="starsInput" value="100" pattern="[0-9]*">
-                <img src="assets/icon/star.svg" alt="Star" class="star-svg large">
-            </div>
-            <button class="purchase-btn" id="purchaseBtn">
-                <span class="font-numeric">140</span>₽
-            </button>
-        </div>
-    </main>
+    <div class="app-container">
+        <main class="main-content">
+            <div class="home-container">
+                <div class="input-wrapper" id="usernameWrapper">
+                    <span id="usernameText" class="username-display">@username</span>
+                    <input type="text" class="username-input" id="usernameInput" value="@username">
+                </div>
 
-    <footer class="footer-nav">
-        <a href="index.html" class="nav-link active" onclick="navigateTo('index.html', event)">
-            <img src="assets/icon/home.svg" alt="Home">
-        </a>
-        <a href="history.html" class="nav-link" onclick="navigateTo('history.html', event)">
-            <img src="assets/icon/history.svg" alt="History">
-        </a>
-    </footer>
+                <div class="input-wrapper" id="balanceWrapper">
+                    <div class="balance-display">
+                        <span id="starsText" class="font-numeric">100</span>
+                        <img src="assets/icon/star.svg" alt="Star" class="star-svg large">
+                    </div>
+                    <input type="number" class="balance-input font-numeric" id="starsInput" value="100" pattern="[0-9]*">
+                </div>
+
+                <button class="purchase-btn" id="purchaseBtn">
+                    <span id="priceText" class="font-numeric">140</span>₽
+                </button>
+            </div>
+        </main>
+
+        <footer class="footer-nav">
+            <a href="index.html" class="nav-link active" onclick="navigateTo('index.html', event)">
+                <div class="nav-icon home-icon"></div>
+            </a>
+            <a href="history.html" class="nav-link" onclick="navigateTo('history.html', event)">
+                <div class="nav-icon history-icon"></div>
+            </a>
+        </footer>
+    </div>
 
     <script src="script.js"></script>
 </body>

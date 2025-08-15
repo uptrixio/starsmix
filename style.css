@@ -1,46 +1,71 @@
+@font-face {
+    font-family: 'SF Pro Display';
+    src: url('assets/font/SF-Pro-Display-Bold.otf') format('opentype');
+    font-weight: 700;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'SF Pro Rounded';
+    src: url('assets/font/SF-Pro-Rounded-Black.otf') format('opentype');
+    font-weight: 900;
+    font-style: normal;
+}
+
 :root {
-    --bg-color: var(--tg-theme-bg-color, #17212b);
-    --card-color: var(--tg-theme-secondary-bg-color, #1d2733);
-    --text-color: var(--tg-theme-text-color, #f5f5f5);
-    --hint-color: var(--tg-theme-hint-color, #8a99a8);
-    --button-bg: var(--tg-theme-button-color, #529ef3);
-    --button-text: var(--tg-theme-button-text-color, #ffffff);
+    --tg-bg-color: var(--tg-theme-bg-color, #17212b);
+    --tg-card-color: var(--tg-theme-secondary-bg-color, #1d2733);
+    --tg-text-color: var(--tg-theme-text-color, #f5f5f5);
+    --tg-hint-color: var(--tg-theme-hint-color, #8a99a8);
+    --tg-button-bg: var(--tg-theme-button-color, #529ef3);
+    --tg-button-text: var(--tg-theme-button-text-color, #ffffff);
     --accent-green: #28a745;
     --accent-yellow: #ffc107;
 }
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-html, body {
+html {
     width: 100%;
     height: 100%;
-    background-color: var(--bg-color);
-    color: var(--text-color);
-    font-family: 'SF Pro Display', sans-serif;
-    font-weight: 700;
-    overflow: hidden;
-    -webkit-tap-highlight-color: transparent;
 }
 
 body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    min-height: 100%;
+    background-color: #000000;
+    font-family: 'SF Pro Display', sans-serif;
+    font-weight: 700;
     display: flex;
-    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    -webkit-tap-highlight-color: transparent;
 }
 
 .font-numeric {
-    font-family: 'Nunito', sans-serif;
+    font-family: 'SF Pro Rounded', sans-serif;
     font-weight: 900;
+}
+
+.app-container {
+    width: 100%;
+    height: 100vh;
+    background-color: var(--tg-bg-color);
+    color: var(--tg-text-color);
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    overflow: hidden;
 }
 
 .main-content {
     flex-grow: 1;
     overflow-y: auto;
     width: 100%;
-    padding-bottom: 70px;
+    padding: 20px;
+    padding-bottom: 90px;
+    display: flex;
+    flex-direction: column;
 }
 
 .home-container {
@@ -49,32 +74,70 @@ body {
     justify-content: center;
     align-items: center;
     text-align: center;
-    height: 100%;
-    padding: 20px;
+    flex-grow: 1;
+}
+
+.input-wrapper {
+    position: relative;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.username-display, .balance-display {
+    pointer-events: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.username-display {
+    font-size: 1.5rem;
+    color: var(--tg-hint-color);
+}
+
+.balance-display {
+    font-size: 5.5rem;
+    line-height: 1;
+    gap: 12px;
 }
 
 .username-input, .balance-input {
-    background: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: transparent;
     border: none;
-    color: var(--text-color);
+    color: transparent;
     text-align: center;
     outline: none;
-    width: 100%;
+    caret-color: var(--tg-button-bg);
+    padding: 0;
+    margin: 0;
+}
+.username-input:focus, .balance-input:focus {
+    color: var(--tg-text-color);
+}
+.username-input:focus ~ .username-display,
+.balance-input:focus ~ .balance-display {
+    opacity: 0;
+    visibility: hidden;
 }
 
 .username-input {
     font-size: 1.5rem;
-    color: var(--hint-color);
     font-family: 'SF Pro Display', sans-serif;
     font-weight: 700;
 }
 
 .balance-input {
     font-size: 5.5rem;
-    line-height: 1;
-    max-width: 80%;
+    font-family: 'SF Pro Rounded', sans-serif;
+    font-weight: 900;
 }
-
 .balance-input::-webkit-outer-spin-button,
 .balance-input::-webkit-inner-spin-button {
     -webkit-appearance: none;
@@ -84,33 +147,26 @@ body {
     -moz-appearance: textfield;
 }
 
-.balance {
-    line-height: 1;
+#balanceWrapper {
     margin: 10px 0 25px 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 12px;
 }
 
 .star-svg {
     display: block;
     flex-shrink: 0;
 }
-
 .star-svg.large {
     width: 52px;
     height: 52px;
 }
-
 .star-svg.small {
     width: 28px;
     height: 28px;
 }
 
 .purchase-btn {
-    background-color: var(--button-bg);
-    color: var(--button-text);
+    background-color: var(--tg-button-bg);
+    color: var(--tg-button-text);
     border: none;
     border-radius: 12px;
     padding: 16px 60px;
@@ -118,7 +174,6 @@ body {
     cursor: pointer;
     transition: transform 0.1s ease;
 }
-
 .purchase-btn:active {
     transform: scale(0.97);
 }
@@ -130,7 +185,7 @@ body {
     right: 0;
     height: 70px;
     width: 100%;
-    background-color: var(--card-color);
+    background-color: var(--tg-card-color);
     display: flex;
     justify-content: space-around;
     align-items: center;
@@ -144,31 +199,36 @@ body {
     align-items: center;
     opacity: 0.6;
 }
-
 .nav-link.active {
     opacity: 1;
 }
 
-.nav-link img {
+.nav-icon {
     width: 32px;
     height: 32px;
-    filter: var(--tg-theme-hint-color); /* Correctly recolor icons */
+    background-color: var(--tg-hint-color);
 }
-
-.nav-link.active img {
-   filter: var(--tg-theme-button-color);
+.nav-link.active .nav-icon {
+    background-color: var(--tg-button-bg);
+}
+.home-icon {
+    mask-image: url(assets/icon/home.svg);
+    mask-size: 100%;
+}
+.history-icon {
+    mask-image: url(assets/icon/history.svg);
+    mask-size: 100%;
 }
 
 .history-list {
     width: 100%;
-    padding: 20px 15px;
 }
 
 .history-card {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: var(--card-color);
+    background-color: var(--tg-card-color);
     border-radius: 12px;
     padding: 20px 15px;
     margin-bottom: 12px;
@@ -200,13 +260,11 @@ body {
     background-color: var(--accent-green);
     color: white;
 }
-
 .status-badge.pending {
     background-color: var(--accent-yellow);
     color: #000;
 }
-
 .card-info {
-    color: var(--hint-color);
+    color: var(--tg-hint-color);
     line-height: 1.4;
 }

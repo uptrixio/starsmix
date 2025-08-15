@@ -11,24 +11,66 @@ window.addEventListener('load', () => {
         console.error("Telegram Web App setup failed", e);
     }
 
-    if (document.getElementById('starsInput')) {
-        const starsInput = document.getElementById('starsInput');
-        const purchaseBtn = document.getElementById('purchaseBtn');
-        const purchaseBtnText = purchaseBtn.querySelector('.font-numeric');
-
-        starsInput.addEventListener('input', function() {
-            // Эта логика - временная.
-            // В будущем здесь будет запрос к бэкенду для получения цены.
-            const quantity = parseInt(this.value, 10);
-            if (!isNaN(quantity) && quantity > 0) {
-                const price = Math.round(quantity * 1.4); // Примерный расчет
-                purchaseBtnText.textContent = price;
-            } else {
-                purchaseBtnText.textContent = '0';
-            }
-        });
+    if (document.body.contains(document.getElementById('starsInput'))) {
+        setupHomePage();
     }
 });
+
+function setupHomePage() {
+    const starsInput = document.getElementById('starsInput');
+    const starsText = document.getElementById('starsText');
+    const balanceWrapper = document.getElementById('balanceWrapper');
+    
+    const usernameInput = document.getElementById('usernameInput');
+    const usernameText = document.getElementById('usernameText');
+    const usernameWrapper = document.getElementById('usernameWrapper');
+
+    const priceText = document.getElementById('priceText');
+
+    balanceWrapper.addEventListener('click', () => {
+        starsInput.focus();
+    });
+
+    usernameWrapper.addEventListener('click', () => {
+        usernameInput.focus();
+    });
+
+    starsInput.addEventListener('input', () => {
+        starsText.textContent = starsInput.value;
+        updatePrice(starsInput.value);
+    });
+
+    usernameInput.addEventListener('input', () => {
+        usernameText.textContent = usernameInput.value;
+    });
+
+    starsInput.addEventListener('blur', () => {
+        if (starsInput.value === '') {
+            starsInput.value = '0';
+            starsText.textContent = '0';
+            updatePrice('0');
+        }
+    });
+
+     usernameInput.addEventListener('blur', () => {
+        if (usernameInput.value === '') {
+            usernameInput.value = '@username';
+            usernameText.textContent = '@username';
+        }
+    });
+}
+
+function updatePrice(quantityStr) {
+    const priceText = document.getElementById('priceText');
+    const quantity = parseInt(quantityStr, 10);
+
+    if (!isNaN(quantity) && quantity > 0) {
+        const price = Math.round(quantity * 1.4);
+        priceText.textContent = price;
+    } else {
+        priceText.textContent = '0';
+    }
+}
 
 function navigateTo(page, event) {
     event.preventDefault();
