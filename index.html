@@ -48,7 +48,7 @@ body {
 .center {
   flex-grow: 1;
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   width: 100%;
 }
@@ -94,7 +94,7 @@ h1 {
 
 @media (max-width: 480px) {
   .underline svg {
-    bottom: -6px;
+    bottom: -4px;
   }
 }
 
@@ -107,6 +107,9 @@ h1 {
     box-shadow: 0 10px 30px rgba(0,0,0,0.3);
     position: relative;
     overflow: hidden;
+  }
+  h1 {
+    font-size: 4rem;
   }
 }
 </style>
