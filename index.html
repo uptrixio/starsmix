@@ -83,26 +83,13 @@ h1 {
   fill: none;
 }
 
-.footer {
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-  width: 100%;
-  margin-top: 20px;
-}
-
 .subtitle {
   font-size: clamp(1.1rem, 3vw, 1.5rem);
   color: var(--tg-hint-color);
+  text-align: left;
+  margin-top: 20px;
+  width: 100%;
   font-weight: bold;
-}
-
-.signature {
-  font-size: 1rem;
-  font-weight: 500;
-  color: var(--tg-hint-color);
-  text-decoration: none;
-  white-space: nowrap;
 }
 
 @media (max-width: 480px) {
@@ -125,7 +112,7 @@ h1 {
     font-size: 4rem;
   }
   .underline svg {
-    bottom: -6px;
+    bottom: -4px;
   }
 }
 </style>
@@ -147,10 +134,7 @@ h1 {
         </h1>
       </div>
     </div>
-    <div class="footer">
-      <div class="subtitle">All you can do is wait.</div>
-      <a href="https://t.me/uptrix" class="signature" target="_blank">@uptrix</a>
-    </div>
+    <div class="subtitle">All you can do is wait.</div>
   </div>
 
   <script>
