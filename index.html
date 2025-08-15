@@ -7,13 +7,17 @@
 <script>
     screen.orientation.lock();
     screen.lockOrientation("orientation");
+
+    if (window.Telegram && window.Telegram.WebApp) {
+        window.Telegram.WebApp.expand();
+    }
 </script>
 <title>Stars</title>
 <link href="https://fonts.cdnfonts.com/css/sf-pro-display" rel="stylesheet">
 <style>
 html, body {
   margin: 0;
-  padding: 0;
+  padding: 0 20px 0px;
   height: 100%;
   background-color: var(--tg-theme-bg-color, #111827);
   color: var(--tg-theme-text-color, #ffffff);
@@ -34,7 +38,6 @@ body {
 .container {
   width: 100%;
   max-width: 600px;
-  padding-left: 20px;
 }
 h1 {
   font-size: clamp(3.5rem, 10vw, 6rem);
@@ -61,7 +64,6 @@ h1 {
   font-size: clamp(1.1rem, 3vw, 1.5rem);
   color: var(--tg-theme-hint-color, rgba(255,255,255,0.5));
   text-align: left;
-  padding: 0 20px 0px;
 }
 </style>
 </head>
