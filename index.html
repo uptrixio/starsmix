@@ -23,9 +23,14 @@ body {
   color: var(--text);
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  padding: 20px;
+  height: 100%;
   box-sizing: border-box;
+}
+.center {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .container {
   text-align: left;
@@ -57,21 +62,24 @@ h1 {
   font-size: clamp(1.1rem, 3vw, 1.5rem);
   color: rgba(255, 255, 255, 0.5);
   text-align: left;
+  padding: 0 20px 10px;
 }
 </style>
 </head>
 <body>
-<div class="container">
-  <h1>
-    We are<br>
-    becoming<br>
-    <span class="underline">
-      better
-      <svg width="324" height="25" viewBox="0 0 324 25" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M0.933809 14.1066C79.9945 6.29259 245.72 4.22617 322.087 17.1281"/>
-      </svg>
-    </span>
-  </h1>
+<div class="center">
+  <div class="container">
+    <h1>
+      We are<br>
+      becoming<br>
+      <span class="underline">
+        better
+        <svg width="324" height="25" viewBox="0 0 324 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M0.933809 14.1066C79.9945 6.29259 245.72 4.22617 322.087 17.1281"/>
+        </svg>
+      </span>
+    </h1>
+  </div>
 </div>
 <div class="subtitle">All you can do is wait.</div>
 <script>
@@ -80,12 +88,16 @@ function applyTheme(t) {
   document.documentElement.style.setProperty('--text', t.text_color || '#ffffff');
   document.documentElement.style.setProperty('--accent', t.link_color || '#1d9bf0');
 }
-if (window.Telegram?.WebApp?.themeParams) {
-  applyTheme(window.Telegram.WebApp.themeParams);
+if (window.Telegram?.WebApp) {
+  Telegram.WebApp.ready();
+  Telegram.WebApp.expand();
+  if (Telegram.WebApp.themeParams) {
+    applyTheme(Telegram.WebApp.themeParams);
+  }
+  Telegram.WebApp.onEvent('themeChanged', function() {
+    applyTheme(Telegram.WebApp.themeParams);
+  });
 }
-window.Telegram?.WebApp?.onEvent('themeChanged', function() {
-  applyTheme(window.Telegram.WebApp.themeParams);
-});
 </script>
 </body>
 </html>
