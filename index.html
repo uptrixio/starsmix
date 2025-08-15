@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Stars</title>
+  <!-- Подключение SF Pro Display -->
+  <link href="https://fonts.cdnfonts.com/css/sf-pro-display" rel="stylesheet">
+  <style>
+    :root {
+      /* CSS-переменные для Telegram темы */
+      --bg: var(--tg-theme-bg-color, #111827);
+      --text: var(--tg-theme-text-color, #ffffff);
+      --accent: var(--tg-theme-link-color, #1d9bf0);
+    }
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+    }
+    body {
+      font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+      font-weight: bold;
+      background-color: var(--bg);
+      color: var(--text);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 20px;
+      box-sizing: border-box;
+    }
+
+    .container {
+      max-width: 400px;
+      width: 100%;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      line-height: 1.2;
+      margin: 0 0 20px;
+      position: relative;
+    }
+
+    h1::after {
+      content: '';
+      display: block;
+      width: 100%;
+      height: 4px;
+      background-color: var(--accent);
+      margin-top: 8px;
+      border-radius: 2px;
+    }
+
+    .subtitle {
+      font-size: 1rem;
+      color: rgba(255, 255, 255, 0.5);
+    }
+
+    /* Адаптив */
+    @media (max-width: 480px) {
+      h1 {
+        font-size: 2rem;
+      }
+    }
+    @media (min-width: 768px) {
+      h1 {
+        font-size: 3rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>We are<br>becoming<br>better</h1>
+    <div class="subtitle">All you can do is wait.</div>
+  </div>
+
+  <!-- Telegram Mini App API integration -->
+  <script>
+    window.Telegram?.WebApp?.onEvent('themeChanged', function() {
+      // при изменении темы
+      document.documentElement.style.setProperty('--bg', window.Telegram.WebApp.themeParams.bg_color);
+      document.documentElement.style.setProperty('--text', window.Telegram.WebApp.themeParams.text_color);
+      document.documentElement.style.setProperty('--accent', window.Telegram.WebApp.themeParams.link_color);
+    });
+
+    // сразу при загрузке
+    if (window.Telegram?.WebApp?.themeParams) {
+      const t = window.Telegram.WebApp.themeParams;
+      document.documentElement.style.setProperty('--bg', t.bg_color);
+      document.documentElement.style.setProperty('--text', t.text_color);
+      document.documentElement.style.setProperty('--accent', t.link_color);
+    }
+  </script>
+</body>
+</html>
